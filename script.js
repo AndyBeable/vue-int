@@ -3,5 +3,8 @@ var app = new Vue({
   data: {
     product: 'Socks',
     image: './assets/socks.jpg',
+    inStock: false,
+    onSale: false,
+    // inventory: 111,
   },
 });
