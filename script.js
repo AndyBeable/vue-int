@@ -1,4 +1,24 @@
+Vue.component('product-details', {
+  props: {
+    details: {
+      type: Array,
+      required: true,
+    },
+  },
+  template: `
+  <ul>
+  <li v-for="detail in details>{{ detail }}</li>
+  </ul>
+  `,
+});
+
 Vue.component('product', {
+  props: {
+    premium: {
+      type: Boolean,
+      required: true,
+    },
+  },
   template: `
   <div class="product">
         <div class="product-image">
@@ -9,6 +29,7 @@ Vue.component('product', {
           <p v-if="inStock">In Stock</p>
           <p v-else :class="{outStock: !inStock}">Out of Stock</p>
           <p>{{ sale }}</p>
+          <p>Shipping: {{ shipping }}</p>
 
           <ul>
             <li v-for="detail in details">{{detail}}</li>
@@ -84,9 +105,19 @@ Vue.component('product', {
       }
       return this.brand + ' ' + this.product + ' are not on sale';
     },
+    shipping() {
+      if (this.premium) {
+        return 'Free';
+      } else {
+        return '£4.99';
+      }
+    },
   },
 });
 
 var app = new Vue({
   el: '#app',
+  data: {
+    premium: false,
+  },
 });
