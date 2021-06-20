@@ -16,8 +16,8 @@ export default {
       user: {
         id: 1,
         username: '@Beabs19',
-        firstName: 'Andy',
-        lastName: 'Beable',
+        firstName: 'Test',
+        lastName: 'TestName',
         email: 'andy.beable@gmail.com',
         isAdmin: true,
       },
