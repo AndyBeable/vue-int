@@ -11,21 +11,24 @@
         {{ followers }}
       </div>
     </div>
-    <div class="user-profile__tweets">
-      <div
-        class="user-profile__tweet"
+    <div class="user-profile__tweets-wrapper">
+      <TweetItem
         v-for="tweet in user.tweets"
         :key="tweet.id"
-      >
-        {{ tweet.content }}
-      </div>
+        :username="user.username"
+        :tweet="tweet"
+        @favourite="toggleFavourite"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import TweetItem from './TweetItem';
+
 export default {
-  name: 'App',
+  name: 'UserProfile',
+  components: { TweetItem },
   data() {
     return {
       followers: 0,
@@ -58,6 +61,9 @@ export default {
   methods: {
     followUser() {
       this.followers++;
+    },
+    toggleFavourite(id) {
+      console.log(`Favourited Tweet #${id}`);
     },
   },
   mounted() {
