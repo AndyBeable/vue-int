@@ -2,9 +2,22 @@
   <div class="user-profile">
     <div class="user-profile__user-panel">
       <h1 class="user-profile__username">@{{ user.username }}</h1>
+      <div class="user-profile__admin-badge" v-if="user.isAdmin">
+        Admin
+      </div>
+
       <div class="user-profile__follower-count">
         <strong>Followers:</strong>
         {{ followers }}
+      </div>
+    </div>
+    <div class="user-profile__tweets">
+      <div
+        class="user-profile__tweet"
+        v-for="tweet in user.tweets"
+        :key="tweet.id"
+      >
+        {{ tweet.content }}
       </div>
     </div>
   </div>
@@ -23,6 +36,10 @@ export default {
         lastName: 'Beable',
         email: 'andy.beable@gmail.com',
         isAdmin: true,
+        tweets: [
+          { id: 1, content: 'Twitter is amazing!' },
+          { id: 2, content: 'Subscribe for more updates' },
+        ],
       },
     };
   },
@@ -64,6 +81,15 @@ export default {
   background-color: white;
   border-radius: 5px;
   border: 1px solid #dfe3eb;
+}
+
+.user-profile__admin-badge {
+  background: hsl(192, 48%, 29%);
+  color: white;
+  border-radius: 5px;
+  margin-right: auto;
+  padding: 0 5px;
+  font-weight: bold;
 }
 
 h1 {
